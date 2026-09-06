@@ -27,15 +27,20 @@ export default function Navbar({ activeSection, onSelectSection }) {
       onSelectSection(sectionId);
     }
     closeMenu();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const currentNav = navSections.find(n => n.id === activeSection) || navSections[0];
 
   useEffect(() => {
-    const activeTabEl = document.getElementById(`mobile-tab-${activeSection}`);
-    if (activeTabEl) {
-      activeTabEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    if (typeof document !== 'undefined') {
+      const activeTabEl = document.getElementById(`mobile-tab-${activeSection}`);
+      if (activeTabEl && typeof activeTabEl.scrollIntoView === 'function') {
+        try {
+          activeTabEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        } catch (e) {
+          activeTabEl.scrollIntoView(false);
+        }
+      }
     }
   }, [activeSection]);
 

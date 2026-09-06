@@ -54,8 +54,23 @@ export default function App() {
 
   const handleSelectSection = (id) => {
     setActiveSection(id);
-    window.history.pushState(null, '', `#${id}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) {
+        // Desktop: smoothly scroll to the section element in the continuous page
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // Mobile: switch view and reset viewport to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      try {
+        window.history.pushState(null, '', `#${id}`);
+      } catch (e) {
+        // Ignore history pushState error in restricted environments
+      }
+    }
   };
 
   const currentIndex = navSections.findIndex(s => s.id === activeSection);
