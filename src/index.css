@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* ========================================
+   THEME – Design Tokens (Tailwind v4)
+   ======================================== */
+@theme {
+  --color-dark: #0B0F14;
+  --color-dark-alt: #101418;
+  --color-dark-card: #161B22;
+  --color-dark-border: #1E2530;
+  --color-cream: #F3EAD8;
+  --color-cream-dark: #D9CEB8;
+  --color-lime: #D4FF4F;
+  --color-lime-dim: #A8CC3F;
+  --color-blue-gray: #8B95A5;
+  --color-blue-gray-light: #A8B2BF;
+
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 16px;
+  --radius-card-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* Animations */
+  --animate-blink: blink 1s step-end infinite;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delay: float 6s ease-in-out 2s infinite;
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-8px) rotate(1deg); }
+    66% { transform: translateY(4px) rotate(-1deg); }
+  }
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1E2530 #0B0F14;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: #0B0F14;
+}
+*::-webkit-scrollbar-thumb {
+  background: #1E2530;
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(212, 255, 79, 0.25);
+  color: #F3EAD8;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ========================================
+   DOT-GRID BACKGROUND
+   ======================================== */
+.dot-grid-bg {
+  background-image: radial-gradient(circle, #1E2530 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ========================================
+   TORN PAPER EFFECT
+   ======================================== */
+.torn-paper-bottom {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 85%,
+    95% 88%, 90% 85%, 85% 90%,
+    80% 87%, 75% 92%, 70% 88%,
+    65% 91%, 60% 86%, 55% 89%,
+    50% 85%, 45% 90%, 40% 87%,
+    35% 91%, 30% 86%, 25% 89%,
+    20% 85%, 15% 90%, 10% 87%,
+    5% 91%, 0% 88%
+  );
+}
+
+.torn-paper-top {
+  clip-path: polygon(
+    0% 15%, 5% 12%, 10% 15%, 15% 10%,
+    20% 13%, 25% 8%, 30% 14%, 35% 9%,
+    40% 13%, 45% 10%, 50% 15%, 55% 11%,
+    60% 14%, 65% 9%, 70% 12%, 75% 8%,
+    80% 13%, 85% 10%, 90% 15%, 95% 12%,
+    100% 15%, 100% 100%, 0% 100%
+  );
+}
+
+/* ========================================
+   HANDWRITTEN ANNOTATION STYLE
+   ======================================== */
+.annotation {
+  font-family: "Space Grotesk", sans-serif;
+  font-style: italic;
+  opacity: 0.6;
+  transform: rotate(-2deg);
+  font-size: 0.75rem;
+  color: var(--color-cream-dark);
+}
+
+/* ========================================
+   GLOW EFFECTS
+   ======================================== */
+.glow-lime {
+  box-shadow: 0 0 20px rgba(212, 255, 79, 0.15),
+              0 0 60px rgba(212, 255, 79, 0.05);
+}
+
+.glow-lime-hover:hover {
+  box-shadow: 0 0 25px rgba(212, 255, 79, 0.25),
+              0 0 80px rgba(212, 255, 79, 0.1);
+}
+
+/* ========================================
+   DASHED CONNECTOR LINES
+   ======================================== */
+.dashed-line-v {
+  border-left: 2px dashed #1E2530;
+}
+
+.dashed-line-h {
+  border-top: 2px dashed #1E2530;
+}
+
+/* ========================================
+   STARRY BACKGROUND (Contact Section)
+   ======================================== */
+.starry-bg {
+  background: radial-gradient(
+    ellipse at 20% 50%,
+    rgba(30, 37, 48, 0.5) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    ellipse at 80% 20%,
+    rgba(212, 255, 79, 0.03) 0%,
+    transparent 40%
+  ),
+  #0B0F14;
+}
+
+/* ========================================
+   SCROLLBAR HIDE UTILITY
+   ======================================== */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
