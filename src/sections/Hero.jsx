@@ -45,12 +45,12 @@ export default function Hero({ onSelectSection }) {
   }, [displayText, isDeleting, currentRoleIndex, typingSpeed]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden lg:pl-24 bg-gradient-to-br from-dark via-dark-alt to-[#0D1520] pt-8 lg:pt-0 pb-10 lg:pb-16">
+    <section id="home" className="min-h-[calc(100vh-140px)] lg:min-h-screen flex flex-col justify-center relative overflow-hidden lg:pl-24 bg-gradient-to-br from-dark via-dark-alt to-[#0D1520] pt-4 sm:pt-6 lg:pt-0 pb-6 lg:pb-16">
       {/* Ambient glows */}
       <div className="absolute top-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-gradient-radial from-amber-500/10 via-amber-900/5 to-transparent pointer-events-none rounded-full blur-3xl opacity-50 z-0"></div>
       <div className="absolute bottom-0 left-0 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-gradient-radial from-lime/5 to-transparent pointer-events-none rounded-full blur-3xl opacity-40 z-0"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-4 sm:py-8 lg:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-2 sm:py-6 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           {/* Left Column: Main Copy and CTAs */}

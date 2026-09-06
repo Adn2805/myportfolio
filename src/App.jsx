@@ -108,11 +108,11 @@ export default function App() {
       {/* ===================================================== */}
       {/* 2. MOBILE VIEW (< 1024px): APP-STYLE ACTIVE VIEW      */}
       {/* ===================================================== */}
-      <main className="lg:hidden relative z-10 pt-14 min-h-screen flex flex-col justify-between">
+      <main className="lg:hidden relative z-10 pt-[88px] sm:pt-24 min-h-screen flex flex-col justify-between">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.22, ease: 'easeInOut' }}

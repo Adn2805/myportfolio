@@ -32,6 +32,13 @@ export default function Navbar({ activeSection, onSelectSection }) {
 
   const currentNav = navSections.find(n => n.id === activeSection) || navSections[0];
 
+  useEffect(() => {
+    const activeTabEl = document.getElementById(`mobile-tab-${activeSection}`);
+    if (activeTabEl) {
+      activeTabEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }, [activeSection]);
+
   return (
     <>
       {/* Desktop Left Sidebar (Preserved & Frozen for >= 1024px) */}
@@ -87,30 +94,52 @@ export default function Navbar({ activeSection, onSelectSection }) {
         </div>
       </aside>
 
-      {/* Mobile Top Bar (Clean, App-like Header) */}
-      <header className="lg:hidden fixed top-0 left-0 w-full h-14 bg-dark/95 backdrop-blur-xl z-50 border-b border-dark-border/70 flex items-center justify-between px-4">
-        {/* Brand */}
-        <button
-          onClick={() => handleMobileNavClick('home')}
-          className="font-heading font-bold text-base text-cream tracking-widest flex items-center gap-1 cursor-pointer"
-        >
-          ADNAN<span className="text-lime font-mono">_</span>
-        </button>
-        
-        {/* Current Active Section Badge & Menu Button */}
-        <div className="flex items-center gap-2.5">
-          <div className="bg-dark-card border border-dark-border px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
-            <span className="font-mono text-[10px] text-lime font-bold">{currentNav.number}</span>
-            <span className="text-[11px] font-heading font-medium text-cream">{currentNav.name}</span>
-          </div>
-
+      {/* Mobile Fixed Top Header with Primary Horizontal Quick Navigation */}
+      <header className="lg:hidden fixed top-0 left-0 w-full z-50 bg-dark/95 backdrop-blur-xl border-b border-dark-border/80">
+        {/* Top bar: Brand + Active indicator + Hamburger button */}
+        <div className="h-12 flex items-center justify-between px-3.5 border-b border-dark-border/50">
           <button
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="text-cream p-1.5 rounded-lg bg-dark-card border border-dark-border hover:border-lime/40 transition-colors cursor-pointer"
-            aria-label="Open mobile menu"
+            onClick={() => handleMobileNavClick('home')}
+            className="font-heading font-bold text-base text-cream tracking-widest flex items-center gap-1 cursor-pointer"
           >
-            <HiOutlineBars3 className="w-5 h-5 text-cream" />
+            ADNAN<span className="text-lime font-mono">_</span>
           </button>
+          
+          <div className="flex items-center gap-2">
+            <div className="bg-dark-card border border-dark-border px-2.5 py-0.5 rounded-full flex items-center gap-1.5 shadow-sm">
+              <span className="font-mono text-[9px] text-lime font-bold">{currentNav.number}</span>
+              <span className="text-[10px] font-heading font-medium text-cream">{currentNav.name}</span>
+            </div>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="text-cream p-1 rounded-lg bg-dark-card border border-dark-border hover:border-lime/40 transition-colors cursor-pointer"
+              aria-label="Open mobile menu"
+            >
+              <HiOutlineBars3 className="w-5 h-5 text-cream" />
+            </button>
+          </div>
+        </div>
+
+        {/* Primary Horizontal Quick Navigation Row (Compact & Horizontally Scrollable) */}
+        <div className="py-1.5 px-2.5 overflow-x-auto hide-scrollbar flex items-center gap-1.5 bg-dark-alt/90">
+          {navSections.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                id={`mobile-tab-${item.id}`}
+                onClick={() => handleMobileNavClick(item.id)}
+                className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-mono transition-all cursor-pointer whitespace-nowrap flex items-center gap-1 ${
+                  isActive
+                    ? 'bg-lime text-dark font-bold shadow-sm shadow-lime/20'
+                    : 'bg-dark-card/80 text-blue-gray-light border border-dark-border/70 hover:text-cream hover:border-lime/30'
+                }`}
+              >
+                <span>{item.name}</span>
+              </button>
+            );
+          })}
         </div>
       </header>
 
