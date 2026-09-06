@@ -12,7 +12,7 @@ const roles = [
   "Data Engineer"
 ];
 
-export default function Hero() {
+export default function Hero({ onSelectSection }) {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -45,13 +45,13 @@ export default function Hero() {
   }, [displayText, isDeleting, currentRoleIndex, typingSpeed]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden lg:pl-24 bg-gradient-to-br from-dark via-dark-alt to-[#0D1520] pt-16 lg:pt-0 pb-12 lg:pb-16">
+    <section id="home" className="min-h-screen flex items-center relative overflow-hidden lg:pl-24 bg-gradient-to-br from-dark via-dark-alt to-[#0D1520] pt-8 lg:pt-0 pb-10 lg:pb-16">
       {/* Ambient glows */}
       <div className="absolute top-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-gradient-radial from-amber-500/10 via-amber-900/5 to-transparent pointer-events-none rounded-full blur-3xl opacity-50 z-0"></div>
       <div className="absolute bottom-0 left-0 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-gradient-radial from-lime/5 to-transparent pointer-events-none rounded-full blur-3xl opacity-40 z-0"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-6 sm:py-8 lg:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-4 sm:py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           {/* Left Column: Main Copy and CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
@@ -59,7 +59,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0 }}
-              className="mb-3"
+              className="mb-2 sm:mb-3"
             >
               <span className="inline-block text-cream-dark/70 font-mono text-[11px] sm:text-xs md:text-sm tracking-wider px-3 py-1 bg-dark-card border border-dark-border rounded-full">
                 Developer Portfolio / Builder Desk
@@ -82,12 +82,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="h-9 md:h-10 mt-3 sm:mt-4 flex items-center"
+              className="h-8 md:h-10 mt-2.5 sm:mt-4 flex items-center"
             >
-              <div className="text-sm sm:text-lg md:text-xl text-blue-gray font-mono bg-dark-card/60 border border-dark-border/80 px-3 py-1 sm:px-3.5 sm:py-1 rounded-md inline-flex items-center">
-                <span className="text-lime mr-2">&gt;</span>
+              <div className="text-xs sm:text-lg md:text-xl text-blue-gray font-mono bg-dark-card/60 border border-dark-border/80 px-2.5 py-1 sm:px-3.5 sm:py-1 rounded-md inline-flex items-center">
+                <span className="text-lime mr-1.5 sm:mr-2">&gt;</span>
                 <span className="text-cream font-medium">{displayText}</span>
-                <span className="inline-block w-2 h-4 md:h-5 bg-lime ml-1.5 align-middle animate-pulse"></span>
+                <span className="inline-block w-1.5 sm:w-2 h-3.5 sm:h-5 bg-lime ml-1.5 align-middle animate-pulse"></span>
               </div>
             </motion.div>
 
@@ -96,7 +96,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-blue-gray-light text-sm sm:text-base md:text-lg mt-4 sm:mt-5 max-w-xl leading-relaxed font-body"
+              className="text-blue-gray-light text-xs sm:text-base md:text-lg mt-3 sm:mt-5 max-w-xl leading-relaxed font-body"
             >
               I turn ideas into real-world solutions using code, curiosity, and practical problem solving.
             </motion.p>
@@ -106,18 +106,28 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-wrap items-center gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto"
+              className="flex flex-wrap items-center gap-2.5 sm:gap-4 mt-5 sm:mt-8 w-full sm:w-auto"
             >
               <a 
                 href="#projects" 
-                className="bg-lime text-dark font-heading font-bold px-6 sm:px-7 py-3 sm:py-3.5 rounded-full hover:bg-lime-dim transition-all text-xs sm:text-sm inline-flex items-center justify-center gap-2 shadow-lg shadow-lime/20 glow-lime-hover transform hover:-translate-y-0.5 flex-1 sm:flex-none text-center"
+                onClick={(e) => {
+                  if (onSelectSection) {
+                    onSelectSection('projects');
+                  }
+                }}
+                className="bg-lime text-dark font-heading font-bold px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-full hover:bg-lime-dim transition-all text-xs sm:text-sm inline-flex items-center justify-center gap-2 shadow-lg shadow-lime/20 glow-lime-hover transform hover:-translate-y-0.5 flex-1 sm:flex-none text-center cursor-pointer"
               >
                 View My Work
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </a>
               <a 
                 href="#contact" 
-                className="border border-cream/30 hover:border-cream text-cream font-heading font-semibold px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-dark-card/40 hover:bg-dark-card transition-all text-xs sm:text-sm flex-1 sm:flex-none text-center"
+                onClick={(e) => {
+                  if (onSelectSection) {
+                    onSelectSection('contact');
+                  }
+                }}
+                className="border border-cream/30 hover:border-cream text-cream font-heading font-semibold px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-full bg-dark-card/40 hover:bg-dark-card transition-all text-xs sm:text-sm flex-1 sm:flex-none text-center cursor-pointer"
               >
                 Let's Connect
               </a>

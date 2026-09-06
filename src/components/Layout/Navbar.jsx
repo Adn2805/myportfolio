@@ -1,60 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiOutlineBars3, HiXMark } from 'react-icons/hi2';
 import { 
   FiHome, FiUser, FiCpu, FiBriefcase, FiFolder, 
-  FiAward, FiMail 
+  FiAward, FiBookOpen, FiMail 
 } from 'react-icons/fi';
 
-const navLinks = [
-  { name: 'Home', href: '#home', icon: FiHome },
-  { name: 'About', href: '#about', icon: FiUser },
-  { name: 'Skills', href: '#skills', icon: FiCpu },
-  { name: 'Experience', href: '#experience', icon: FiBriefcase },
-  { name: 'Projects', href: '#projects', icon: FiFolder },
-  { name: 'Certifications', href: '#certifications', icon: FiAward },
-  { name: 'Contact', href: '#contact', icon: FiMail },
+export const navSections = [
+  { id: 'home', name: 'Home', number: '00', icon: FiHome },
+  { id: 'about', name: 'About', number: '01', icon: FiUser },
+  { id: 'skills', name: 'Skills', number: '02', icon: FiCpu },
+  { id: 'experience', name: 'Experience', number: '03', icon: FiBriefcase },
+  { id: 'projects', name: 'Projects', number: '04', icon: FiFolder },
+  { id: 'certifications', name: 'Certifications', number: '05', icon: FiAward },
+  { id: 'education', name: 'Education', number: '06', icon: FiBookOpen },
+  { id: 'contact', name: 'Contact', number: '07', icon: FiMail },
 ];
 
-export default function Navbar() {
-  const [activeSection, setActiveSection] = useState('home');
+export default function Navbar({ activeSection, onSelectSection }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = navLinks.map(link => link.href.substring(1));
-      
-      let current = '';
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 200 && rect.bottom >= 100) {
-            current = section;
-            break;
-          }
-        }
-      }
-      if (current) {
-        setActiveSection(current);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const closeMenu = () => setIsMobileMenuOpen(false);
 
+  const handleMobileNavClick = (sectionId) => {
+    if (onSelectSection) {
+      onSelectSection(sectionId);
+    }
+    closeMenu();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const currentNav = navSections.find(n => n.id === activeSection) || navSections[0];
+
   return (
     <>
-      {/* Desktop Left Sidebar */}
+      {/* Desktop Left Sidebar (Preserved & Frozen for >= 1024px) */}
       <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-24 bg-dark-alt/95 backdrop-blur-xl border-r border-dark-border/60 z-50 flex-col items-center py-6 justify-between shadow-2xl">
         
         {/* Logo */}
         <a 
           href="#home" 
+          onClick={() => onSelectSection && onSelectSection('home')}
           className="font-heading font-extrabold text-sm text-cream tracking-widest hover:text-lime transition-colors group flex flex-col items-center gap-1"
         >
           <span className="text-lime text-lg leading-none font-mono">_</span>
@@ -62,14 +48,17 @@ export default function Navbar() {
         </a>
         
         {/* Nav Links */}
-        <nav className="flex flex-col gap-1.5 w-full px-2">
-          {navLinks.map((link) => {
+        <nav className="flex flex-col gap-1 w-full px-2">
+          {navSections.map((link) => {
             const Icon = link.icon;
-            const isActive = activeSection === link.href.substring(1);
+            const isActive = activeSection === link.id;
             return (
               <a
-                key={link.name}
-                href={link.href}
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={() => {
+                  if (onSelectSection) onSelectSection(link.id);
+                }}
                 className={`w-full py-2 px-1 text-center flex flex-col items-center gap-1 rounded-xl transition-all group ${
                   isActive
                     ? 'bg-lime text-dark font-bold shadow-md shadow-lime/20'
@@ -98,84 +87,108 @@ export default function Navbar() {
         </div>
       </aside>
 
-      {/* Mobile Top Bar */}
-      <header className="lg:hidden fixed top-0 left-0 w-full h-16 bg-dark/90 backdrop-blur-xl z-50 border-b border-dark-border/60 flex items-center justify-between px-5">
-        <a href="#home" className="font-heading font-bold text-lg text-cream tracking-widest flex items-center gap-1">
+      {/* Mobile Top Bar (Clean, App-like Header) */}
+      <header className="lg:hidden fixed top-0 left-0 w-full h-14 bg-dark/95 backdrop-blur-xl z-50 border-b border-dark-border/70 flex items-center justify-between px-4">
+        {/* Brand */}
+        <button
+          onClick={() => handleMobileNavClick('home')}
+          className="font-heading font-bold text-base text-cream tracking-widest flex items-center gap-1 cursor-pointer"
+        >
           ADNAN<span className="text-lime font-mono">_</span>
-        </a>
+        </button>
         
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-lime/10 border border-lime/30 text-[10px] font-mono text-lime">
-            <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse"></span>
-            Open to Work
+        {/* Current Active Section Badge & Menu Button */}
+        <div className="flex items-center gap-2.5">
+          <div className="bg-dark-card border border-dark-border px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+            <span className="font-mono text-[10px] text-lime font-bold">{currentNav.number}</span>
+            <span className="text-[11px] font-heading font-medium text-cream">{currentNav.name}</span>
           </div>
+
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="text-cream p-1.5 rounded-lg bg-dark-card border border-dark-border"
-            aria-label="Open menu"
+            className="text-cream p-1.5 rounded-lg bg-dark-card border border-dark-border hover:border-lime/40 transition-colors cursor-pointer"
+            aria-label="Open mobile menu"
           >
-            <HiOutlineBars3 className="w-6 h-6 text-cream" />
+            <HiOutlineBars3 className="w-5 h-5 text-cream" />
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay Drawer */}
+      {/* Mobile Drawer Menu (App Style) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 28, stiffness: 240 }}
-            className="fixed inset-0 z-[60] bg-dark/98 backdrop-blur-2xl flex flex-col lg:hidden"
-          >
-            <div className="h-16 flex items-center justify-between px-5 border-b border-dark-border/60">
-              <div className="font-heading font-bold text-lg text-cream tracking-widest">
-                ADNAN<span className="text-lime font-mono">_</span>
+          <div className="fixed inset-0 z-[60] lg:hidden">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeMenu}
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            />
+
+            {/* Slide-in Panel */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 26, stiffness: 260 }}
+              className="absolute top-0 right-0 bottom-0 w-[82%] max-w-xs bg-dark-alt/98 border-l border-dark-border/80 flex flex-col justify-between p-5 shadow-2xl overflow-y-auto"
+            >
+              <div>
+                {/* Header */}
+                <div className="flex items-center justify-between pb-4 border-b border-dark-border/60">
+                  <div className="font-heading font-bold text-sm text-cream tracking-wider flex items-center gap-1.5">
+                    <span className="text-lime font-mono text-xs">//</span> PORTFOLIO MENU
+                  </div>
+                  <button
+                    onClick={closeMenu}
+                    className="p-1 rounded-md bg-dark-card border border-dark-border text-cream hover:text-lime transition cursor-pointer"
+                  >
+                    <HiXMark className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Navigation Items */}
+                <nav className="mt-4 flex flex-col gap-1.5">
+                  {navSections.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activeSection === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => handleMobileNavClick(item.id)}
+                        className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all cursor-pointer ${
+                          isActive
+                            ? 'bg-lime text-dark font-bold shadow-md shadow-lime/20'
+                            : 'text-blue-gray-light hover:text-cream hover:bg-dark-card/70'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <Icon className={`text-base ${isActive ? 'text-dark' : 'text-lime'}`} />
+                          <span className="font-heading text-sm">{item.name}</span>
+                        </div>
+                        <span className={`font-mono text-[10px] ${isActive ? 'text-dark/80' : 'text-blue-gray'}`}>
+                          {item.number}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </nav>
               </div>
-              <button
-                onClick={closeMenu}
-                className="text-cream p-1.5 rounded-lg bg-dark-card border border-dark-border"
-                aria-label="Close menu"
-              >
-                <HiXMark className="w-6 h-6 text-cream" />
-              </button>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col justify-between">
-              <nav className="flex flex-col gap-2">
-                {navLinks.map((link) => {
-                  const Icon = link.icon;
-                  const isActive = activeSection === link.href.substring(1);
-                  return (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      onClick={closeMenu}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-lg font-heading transition-all ${
-                        isActive
-                          ? 'bg-lime text-dark font-bold shadow-md shadow-lime/20'
-                          : 'text-blue-gray-light hover:text-cream hover:bg-dark-card'
-                      }`}
-                    >
-                      <Icon className="text-xl" />
-                      <span>{link.name}</span>
-                    </a>
-                  );
-                })}
-              </nav>
-              
-              <div className="mt-8 pt-6 border-t border-dark-border/60">
-                <div className="flex items-center gap-3 bg-dark-card border border-dark-border p-4 rounded-xl">
-                  <div className="w-3 h-3 rounded-full bg-lime animate-pulse"></div>
-                  <div>
-                    <div className="text-xs font-mono text-lime font-bold">AVAILABLE FOR WORK</div>
-                    <div className="text-[11px] text-blue-gray">Full-Time & Internships</div>
+
+              {/* Status Badge */}
+              <div className="pt-4 mt-6 border-t border-dark-border/60">
+                <div className="bg-dark-card border border-dark-border/80 rounded-xl p-3 flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-lime animate-pulse shrink-0"></span>
+                  <div className="leading-tight">
+                    <div className="text-[11px] font-mono text-lime font-bold">OPEN TO WORK</div>
+                    <div className="text-[10px] text-blue-gray">Full-Time & Internships</div>
                   </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
