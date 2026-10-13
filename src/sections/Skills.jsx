@@ -289,6 +289,68 @@ const SHA256Icon = () => (
     <path fill="#fff" d="M82 32c-12.1 0-22 9.9-22 22 0 3.1.6 6 1.8 8.7L32 92v16h16v-8h8v-8h8l6.3-6.3c2.7 1.2 5.6 1.8 8.7 1.8 12.1 0 22-9.9 22-22s-9.9-21.5-19-21.5zm6 20c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"/>
   </svg>
 );
+const TypeScriptIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <path fill="#3178C6" d="M0 0h128v128H0z"/>
+    <path fill="#fff" d="M68.5 70.8h-11v37H44.8v-37H33.9V59.2h34.6v11.6zm22.2 12.3c3.4 1.8 7.3 3.1 11.5 3.1 4.5 0 7-1.8 7-4.8 0-3.1-2.4-4.5-8.3-6.8-8.8-3.3-14.7-7.6-14.7-16 0-8.9 7-15.6 18.7-15.6 5.8 0 10.9 1.4 14.7 3.6l-3.3 11.4c-3.1-1.6-6.8-2.7-10.7-2.7-4.5 0-6.5 2-6.5 4.3 0 2.8 2.5 4.1 8.8 6.5 9.7 3.7 14.5 8.5 14.5 16.5 0 9.8-7.7 16.2-20.2 16.2-6.5 0-12.7-1.7-17-4.2l3.6-11.5z"/>
+  </svg>
+);
+
+const NodeJSIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <path fill="#339933" d="M64 4.5L12 34.5v60l52 30 52-30v-60L64 4.5zm0 16.2l38 21.9v43.8L64 108.3 26 86.4V42.6L64 20.7z"/>
+    <path fill="#fff" d="M50 48h8v24h12v8H50V48zm28 0h8v32h-8V48z"/>
+  </svg>
+);
+
+const ExpressIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <circle cx="64" cy="64" r="58" fill="#181818" stroke="#444" strokeWidth="3"/>
+    <text x="64" y="74" fill="#ffffff" fontSize="24" fontWeight="bold" textAnchor="middle" fontFamily="monospace">ex</text>
+  </svg>
+);
+
+const PydanticIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <circle cx="64" cy="64" r="58" fill="#E92063"/>
+    <path fill="#fff" d="M38 32h32c14.4 0 24 9.6 24 24s-9.6 24-24 24H52v20H38V32zm14 12v24h18c7.7 0 12-4.3 12-12s-4.3-12-12-12H52z"/>
+  </svg>
+);
+
+const PandasIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <rect x="18" y="22" width="20" height="84" rx="4" fill="#150458"/>
+    <rect x="54" y="38" width="20" height="68" rx="4" fill="#E70488"/>
+    <rect x="90" y="22" width="20" height="84" rx="4" fill="#FFD43B"/>
+    <circle cx="28" cy="36" r="6" fill="#fff"/>
+    <circle cx="64" cy="52" r="6" fill="#fff"/>
+    <circle cx="100" cy="36" r="6" fill="#150458"/>
+  </svg>
+);
+
+const NumPyIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <circle cx="64" cy="64" r="58" fill="#013243"/>
+    <path fill="#4DABCF" d="M36 34h12l32 44V34h12v60H80L48 50v44H36V34z"/>
+    <circle cx="92" cy="40" r="5" fill="#4DABCF"/>
+  </svg>
+);
+
+const PowerBIIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <path fill="#F2C811" d="M32 64h18v48H32z"/>
+    <path fill="#F2C811" d="M55 44h18v68H55z" opacity="0.85"/>
+    <path fill="#F2C811" d="M78 24h18v88H78z" opacity="0.7"/>
+    <path fill="#F2C811" d="M20 84h18v28H20z" opacity="0.5"/>
+  </svg>
+);
+
+const VSCodeIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <path fill="#007ACC" d="M96.7 13.8L72.2 33.6 47.7 54.3 27.5 39 12 51.2l23.5 18.2L12 87.5 27.5 99.8 47.7 84.5l24.5 20.7 24.5 19.8 19.3-9.5V23.3L96.7 13.8zM96.7 96.6L59.2 69.4l37.5-27.2v54.4z"/>
+  </svg>
+);
+
 
 // ==========================================
 // SKILLS DATA REGISTRY WITH OFFICIAL BRAND SVGS
@@ -299,6 +361,7 @@ const skills = [
   { name: "Python", category: "Languages", icon: <PythonIcon /> },
   { name: "Java", category: "Languages", icon: <JavaIcon /> },
   { name: "JavaScript", category: "Languages", icon: <JavaScriptIcon /> },
+  { name: "TypeScript", category: "Languages", icon: <TypeScriptIcon /> },
   { name: "C", category: "Languages", icon: <CIcon /> },
   { name: "C++", category: "Languages", icon: <CplusplusIcon /> },
   
@@ -312,10 +375,16 @@ const skills = [
   { name: "Vector (FAISS)", category: "AI & ML", icon: <MetaFAISSIcon /> },
   { name: "Prompt Eng.", category: "AI & ML", icon: <PromptEngIcon /> },
   { name: "OpenCV", category: "AI & ML", icon: <OpenCVIcon /> },
+  { name: "Pandas", category: "AI & ML", icon: <PandasIcon /> },
+  { name: "NumPy", category: "AI & ML", icon: <NumPyIcon /> },
+  { name: "Power BI", category: "AI & ML", icon: <PowerBIIcon /> },
   
-  // Web & Frontend
+  // Web & Backend
   { name: "React.js", category: "Web & Frontend", icon: <ReactIcon /> },
   { name: "Next.js", category: "Web & Frontend", icon: <NextJSIcon /> },
+  { name: "Node.js", category: "Web & Frontend", icon: <NodeJSIcon /> },
+  { name: "Express.js", category: "Web & Frontend", icon: <ExpressIcon /> },
+  { name: "Pydantic", category: "Web & Frontend", icon: <PydanticIcon /> },
   { name: "HTML5", category: "Web & Frontend", icon: <HTML5Icon /> },
   { name: "CSS3", category: "Web & Frontend", icon: <CSS3Icon /> },
   { name: "Zustand", category: "Web & Frontend", icon: <ZustandIcon /> },
@@ -326,6 +395,7 @@ const skills = [
   { name: "GitHub", category: "Cloud & DevOps", icon: <GitHubIcon /> },
   { name: "Docker", category: "Cloud & DevOps", icon: <DockerIcon /> },
   { name: "REST APIs", category: "Cloud & DevOps", icon: <PostmanIcon /> },
+  { name: "VS Code", category: "Cloud & DevOps", icon: <VSCodeIcon /> },
   { name: "Vercel", category: "Cloud & DevOps", icon: <VercelIcon /> },
   
   // Databases
@@ -343,7 +413,18 @@ const skills = [
 ];
 
 const categories = ["All", "Languages", "AI & ML", "Web & Frontend", "Cloud & DevOps", "Databases", "Hardware & Security"];
-const domains = ["DSA", "Web Development", "AI/ML", "Generative AI", "API Integration", "Computer Vision"];
+const domains = [
+  "DSA", 
+  "Web Development", 
+  "AI/ML", 
+  "Generative AI", 
+  "Text-to-SQL", 
+  "LLMs & Structured Outputs", 
+  "API Integration", 
+  "Computer Vision", 
+  "Data Analytics",
+  "OOP & DBMS"
+];
 
 const softSkills = [
   "System Design Thinking",

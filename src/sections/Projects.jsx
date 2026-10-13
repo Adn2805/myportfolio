@@ -6,6 +6,15 @@ import { FiArrowUpRight, FiGithub, FiExternalLink } from 'react-icons/fi';
 
 const projects = [
   {
+    title: "Text-to-SQL Engine",
+    tags: ["GenAI", "FastAPI", "PostgreSQL"],
+    date: "Aug to Sep 2026",
+    desc: "Full-stack Conversational Text-to-SQL analytics platform with Pydantic structured outputs, ambiguity clarification, and automated pytest validation.",
+    tech: ["Python", "FastAPI", "PostgreSQL", "React", "Docker"],
+    gradient: "from-emerald-900/40 to-teal-900/30",
+    link: "https://github.com/Adn2805/QueryPilot"
+  },
+  {
     title: "ADAS Engine",
     tags: ["AI", "Backend", "Auto Tech"],
     date: "Jun to Jul 2026",
@@ -66,7 +75,7 @@ const Projects = () => {
           </div>
         </ScrollReveal>
 
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((project, index) => (
             <ScrollReveal key={project.title} delay={index * 0.1}>
               <motion.div 
