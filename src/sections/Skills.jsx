@@ -351,12 +351,88 @@ const VSCodeIcon = () => (
   </svg>
 );
 
+const LinuxIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <path fill="#FFA500" d="M38 100c-8 0-14 6-14 14s6 14 14 14 18-6 18-14-10-14-18-14zm52 0c-8 0-18 6-18 14s10 14 18 14 14-6 14-14-6-14-14-14z"/>
+    <path fill="#000" d="M64 10c-18 0-26 14-26 32 0 10 2 20 6 30-4 4-8 12-8 20 0 14 12 24 28 24s28-10 28-24c0-8-4-16-8-20 4-10 6-20 6-30 0-18-8-32-26-32z"/>
+    <path fill="#fff" d="M50 44c0 4 2 8 5 8s5-4 5-8-2-8-5-8-5 4-5 8zm18 0c0 4 2 8 5 8s5-4 5-8-2-8-5-8-5 4-5 8z"/>
+    <circle cx="53" cy="44" r="2" fill="#000"/>
+    <circle cx="71" cy="44" r="2" fill="#000"/>
+    <path fill="#FFA500" d="M64 54c-5 0-9 4-9 6s4 6 9 6 9-4 9-6-4-6-9-6z"/>
+  </svg>
+);
+
+const PytestIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <circle cx="64" cy="64" r="58" fill="#0A9EDC"/>
+    <path fill="#fff" d="M42 34l22 22-22 22 22 22 22-22-22-22 22-22-22-22z" opacity="0.3"/>
+    <path fill="#00D084" d="M40 76l14 14 34-34-8-8-26 26-6-6z"/>
+    <text x="64" y="112" fill="#fff" fontSize="13" fontWeight="bold" textAnchor="middle" fontFamily="monospace">pytest</text>
+  </svg>
+);
+
+const AsyncIOIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <circle cx="64" cy="64" r="58" fill="#1E293B" stroke="#38BDF8" strokeWidth="4"/>
+    <path fill="none" stroke="#38BDF8" strokeWidth="6" strokeLinecap="round" strokeDasharray="12 6" d="M34 64 A30 30 0 1 1 94 64 A30 30 0 1 1 34 64"/>
+    <polygon points="90,56 102,64 90,72" fill="#38BDF8"/>
+    <text x="64" y="69" fill="#F8FAFC" fontSize="14" fontWeight="bold" textAnchor="middle" fontFamily="monospace">async</text>
+  </svg>
+);
+
+const RoboticsIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <rect x="34" y="38" width="60" height="52" rx="10" fill="#3B82F6"/>
+    <circle cx="50" cy="56" r="7" fill="#fff"/>
+    <circle cx="78" cy="56" r="7" fill="#fff"/>
+    <circle cx="50" cy="56" r="3.5" fill="#1D4ED8"/>
+    <circle cx="78" cy="56" r="3.5" fill="#1D4ED8"/>
+    <rect x="52" y="72" width="24" height="6" rx="3" fill="#93C5FD"/>
+    <rect x="61" y="22" width="6" height="16" fill="#64748B"/>
+    <circle cx="64" cy="20" r="6" fill="#EF4444"/>
+    <rect x="22" y="52" width="8" height="24" rx="4" fill="#64748B"/>
+    <rect x="98" y="52" width="8" height="24" rx="4" fill="#64748B"/>
+  </svg>
+);
+
+const ConcurrencyIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <circle cx="64" cy="64" r="58" fill="#111827" stroke="#A855F7" strokeWidth="3"/>
+    <path d="M30 44 h68 M30 64 h68 M30 84 h68" stroke="#6B7280" strokeWidth="4" strokeLinecap="round"/>
+    <circle cx="48" cy="44" r="6" fill="#A855F7"/>
+    <circle cx="80" cy="64" r="6" fill="#EC4899"/>
+    <circle cx="58" cy="84" r="6" fill="#06B6D4"/>
+    <polygon points="62,40 68,44 62,48" fill="#A855F7"/>
+    <polygon points="94,60 100,64 94,68" fill="#EC4899"/>
+    <polygon points="72,80 78,84 72,88" fill="#06B6D4"/>
+  </svg>
+);
+
+const ProtocolsIcon = () => (
+  <svg viewBox="0 0 128 128" className="w-8 h-8 sm:w-10 sm:h-10">
+    <circle cx="64" cy="64" r="58" fill="#0F172A" stroke="#10B981" strokeWidth="3"/>
+    <rect x="28" y="44" width="28" height="40" rx="4" fill="#1E293B" stroke="#10B981" strokeWidth="2"/>
+    <rect x="72" y="44" width="28" height="40" rx="4" fill="#1E293B" stroke="#10B981" strokeWidth="2"/>
+    <path d="M56 56 H72 M72 72 H56" stroke="#10B981" strokeWidth="3" strokeLinecap="round"/>
+    <polygon points="70,53 76,56 70,59" fill="#10B981"/>
+    <polygon points="58,69 52,72 58,75" fill="#10B981"/>
+    <text x="64" y="102" fill="#10B981" fontSize="10" fontWeight="bold" textAnchor="middle" fontFamily="monospace">I/O COMM</text>
+  </svg>
+);
+
 
 // ==========================================
 // SKILLS DATA REGISTRY WITH OFFICIAL BRAND SVGS
 // ==========================================
 
 const skills = [
+  // Systems & Hardware Integration (AIT / Robotics)
+  { name: "AsyncIO", category: "Hardware & Security", icon: <AsyncIOIcon /> },
+  { name: "Concurrency", category: "Hardware & Security", icon: <ConcurrencyIcon /> },
+  { name: "Robotics & AIT", category: "Hardware & Security", icon: <RoboticsIcon /> },
+  { name: "HW Protocols", category: "Hardware & Security", icon: <ProtocolsIcon /> },
+  { name: "Linux", category: "Cloud & DevOps", icon: <LinuxIcon /> },
+  { name: "pytest", category: "Cloud & DevOps", icon: <PytestIcon /> },
   // Languages
   { name: "Python", category: "Languages", icon: <PythonIcon /> },
   { name: "Java", category: "Languages", icon: <JavaIcon /> },
@@ -414,26 +490,26 @@ const skills = [
 
 const categories = ["All", "Languages", "AI & ML", "Web & Frontend", "Cloud & DevOps", "Databases", "Hardware & Security"];
 const domains = [
-  "DSA", 
-  "Web Development", 
-  "AI/ML", 
-  "Generative AI", 
-  "Text-to-SQL", 
-  "LLMs & Structured Outputs", 
-  "API Integration", 
-  "Computer Vision", 
-  "Data Analytics",
+  "Robotics & AIT Integration",
+  "Concurrent Programming & AsyncIO",
+  "Real-Time Systems & Telemetry",
+  "Root-Cause Diagnostics",
+  "AI/ML & Computer Vision",
+  "Full-Stack & FastAPI",
+  "Generative AI & Text-to-SQL",
+  "Hardware Protocols & Linux",
+  "Automated Testing (pytest)",
   "OOP & DBMS"
 ];
 
 const softSkills = [
-  "System Design Thinking",
-  "Rapid Prototyping",
-  "Technical Documentation",
-  "Cross-domain Problem Solving",
-  "Debugging Under Constraints",
-  "Independent Research",
-  "Iterative Building"
+  "Hardware-Software Boundary Debugging",
+  "Massively Concurrent Coordination",
+  "Root-Cause Analysis & Log Investigation",
+  "Real-Time System Design & Low Latency",
+  "Rapid Prototyping & Integration Testing",
+  "Technical Documentation & Telemetry",
+  "Cross-disciplinary Team Collaboration"
 ];
 
 const Skills = () => {

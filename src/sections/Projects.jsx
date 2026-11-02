@@ -6,6 +6,15 @@ import { FiArrowUpRight, FiGithub, FiExternalLink } from 'react-icons/fi';
 
 const projects = [
   {
+    title: "LabSync Sentinel",
+    tags: ["Robotics & AIT", "AsyncIO", "FastAPI"],
+    date: "Oct to Nov 2026",
+    desc: "Software simulator for lab automation & multi-component robotics (actuators, robotic arm, pump, camera). Features state machine validation, fault injection, real-time telemetry, and deterministic root-cause diagnosis.",
+    tech: ["Python", "AsyncIO", "FastAPI", "React", "TypeScript", "pytest"],
+    gradient: "from-cyan-900/40 to-blue-900/30",
+    link: "https://github.com/Adn2805/labsync-sentinel"
+  },
+  {
     title: "Text-to-SQL Engine",
     tags: ["GenAI", "FastAPI", "PostgreSQL"],
     date: "Aug to Sep 2026",
