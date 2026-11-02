@@ -490,8 +490,6 @@ const skills = [
 
 const categories = ["All", "Languages", "AI & ML", "Web & Frontend", "Cloud & DevOps", "Databases", "Hardware & Security"];
 const domains = [
-  "Robotics & AIT Integration",
-  "Concurrent Programming & AsyncIO",
   "Real-Time Systems & Telemetry",
   "Root-Cause Diagnostics",
   "AI/ML & Computer Vision",
